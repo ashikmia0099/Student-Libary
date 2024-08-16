@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+{% load static %}
+{% block blockname %}
+
+
+
+
+
+<style>
+    .content-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        min-width: 400px;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+       
+    }
+    
+    .content-table thead tr {
+        background-color: #0a1110;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+        font-size: 25px;
+        padding-top: 15px;
+       
+    }
+    
+    .content-table th,
+    .content-table td {
+        padding: 12px 15px;
+        font-size: 17px;
+        font-weight: 600;
+        color: white;
+    }
+    
+    .content-table tbody tr {
+        border-bottom: 2px solid #ffffff;
+        background-color: #011f4b;
+    }
+        
+    .contractform h1{
+        font-size: 55px;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+
+    .paginations{
+        padding-bottom: 5%;
+    }
+        
+    .page-link{
+        font-size: 25px;
+        color: #000000;
+        font-weight: 500;
+    }
+    .read-more{
+        font-size: 20px;
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .contractformfulldiv{
+        margin: 5vh 5%;
+
+    }
+
+    .fabaritebookh1{
+        color: white;
+        text-align: center;
+    }
+
+
+
+</style>
+
+
+
+
+<div >
+    <h1 class="fabaritebookh1">Your Favorite Books</h1>
+</div>
+
+<div class="contractformfulldiv">
+    <div>
+        <table class="content-table w-100">
+            <thead>
+                <tr class="trclass">
+                    <th><h4 >Book Name</h4></th>
+                    <th><h4 >Author Name</h4></th>
+                    <th class="time"><h4 >Created At</h4></th>
+                    <th><h4 >Remove</h4></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% if favorite_books %}
+
+                {% for i in favorite_books %}
+
+                <tr>
+                    <td> {{i.book.Book_Title}} </td>
+                    <td> {{i.book.user.first_name}} {{i.book.user.last_name}}</td>
+                    
+                    <td> {{i.created_on}}</td>
+                    
+                    <td><a href="{% url 'Remove_book' i.id %}"><button type="button" class="btn btn-danger">Remove</button></a></td>
+                    
+                    
+                </tr>
+                  
+                {% endfor %}
+
+                {% else %}
+
+                <h1>Data Not Found</h1>
+                  
+                {% endif %}
+                
+                
+            </tbody>
+            
+        </table>
+    </div>
+</div>
+
+
+
+
+<!-- recommended_books  -->
+
+
+
+<style>
+
+    .cardsection{
+        padding: 5vw;
+    }
+
+    .cardsectiondivtwo{
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+    }
+
+
+    .cardofbook{
+        height: 320px;
+        width: 215px;
+        background-color: rgb(223, 217, 217);
+        border-radius: 10px;
+        margin: 2vh 1vw;
+        
+        
+    }
+
+    .bookcardimage{
+        height: 150px;
+        width: 120px;
+        margin: 10px ;
+        text-align: center;
+    }
+
+    .bookimagediv{
+        margin: auto;
+        text-align: center;
+    }
+
+    .bookcardtext{
+        padding: 0px 15px;
+    }
+
+    .redfab{
+        height: 40px;
+        width: 40px;
+    }
+
+    
+
+    .cardimagebutton{
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        padding: 0% 15px;
+    }
+
+    .boockcardtitle{
+        font-weight: 700;
+    }
+    
+.recommendbook{
+    text-align: center;
+    color: white;
+}
+
+</style>
+
+
+<div>
+    <h1 class="recommendbook">Recommended Books</h1>
+</div>
+
+<div class="cardsection">
+    <div class="cardsectiondivtwo">
+        {% if recommended_books %}
+            {% for book in recommended_books %}
+                <div class="cardofbook">
+                    <div class="imagedivbook bookimagediv">
+                        <img src="{{ book.BookImage.url }}" class=" bookcardimage" alt="">
+                    </div>
+                    <div class=" bookcardtext">
+                        <h6 class=" boockcardtitle">{{ book.Book_Title }}</h6>
+                        <h6>Author: {{ book.user.first_name }} {{ book.user.last_name }}</h6>
+                        
+                    </div>
+                    <div class=" cardimagebutton">
+                        <div>
+                            {% if user.is_authenticated and book in user.favorite_books.all %}
+                                <!-- Already in Favorites -->
+                                <img src="{% static 'images/black_fab-filled.png' %}" class=" redfab" alt="">
+                            {% else %}
+                                <!-- Add to Favorites -->
+                                <a href="{% url 'add_to_favorites' book.id %}">
+                                    <img src="{% static 'images/black_fab-removebg-preview.png' %}" class="redfab" alt="">
+                                </a>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h1>No books found for this author.</h1>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock blockname %}
+
+
+
+
+
+
+

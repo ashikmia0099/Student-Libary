@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+{% load static %}
+{% block blockname %}
+
+
+<!-- author section -->
+
+
+
+<style>
+    .authorheader{
+        
+        
+        margin-top: -15vh;
+        
+    }
+
+    .authorheader h1{
+        text-align: center;
+        
+        padding-top: 15vh;
+        border-bottom: 3px solid rgb(228, 225, 225);
+        padding-bottom: 10px;  
+        width: 20vw;  
+        margin: auto;
+        color: white;
+
+    }
+
+    .allauthornamefulldiv{
+        
+        margin: 5vh 2vw;
+        padding: 5vh 5vw;
+        border-radius: 20px;
+       
+    }
+
+    .pagnationdiv{
+        padding-top: 5vh;
+        margin: auto;
+        text-align: center;
+    }
+
+    .allauthorname{
+        height: 150px;
+    }
+
+ 
+
+
+ 
+    
+    .uldivallauthor {
+        display: flex;
+        flex-wrap: wrap; /* Allow the items to wrap to the next line */
+        justify-content: space-around; /* Distribute items with space around each line */
+        
+        padding: 0; 
+        
+    }
+    
+    .uldivallauthor li {
+        margin: 10px 0; /* Add vertical margin to space out rows */
+        width: calc(25% - 20px); /* Adjust the width based on the number of items per row */
+        
+    }
+    
+
+    .authoratage{
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+    }
+
+    .nobooksh1{
+        color: white;
+        text-align: center;
+    }
+
+
+    .paginations{
+        border-bottom: 1px solid white;
+    }
+
+</style>
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    <!-- book section -->
+    
+    <style>
+
+        .booksection{
+            padding: 5vw;
+        }
+
+        .booksectiondivtwo{
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+        }
+
+
+        .bookcard{
+            height: 310px;
+            width: 215px;
+            background-color: rgb(223, 217, 217);
+            border-radius: 10px;
+            margin: 2vh 1vw;
+            
+            
+        }
+
+        .bookimages{
+            height: 150px;
+            width: 120px;
+            margin: 10px ;
+            text-align: center;
+        }
+
+        .imagedivbook{
+            margin: auto;
+            text-align: center;
+        }
+
+        .booktext{
+            padding: 0px 15px;
+        }
+
+        .blackfab{
+            height: 40px;
+            width: 40px;
+        }
+
+        .addcardbutton{
+            background-color: rgb(24, 31, 28);
+            padding: 5px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .imagebutton{
+            justify-content: space-between;
+            display: flex;
+            align-items: center;
+            padding: 0% 15px;
+        }
+
+        .booktitle{
+            font-weight: 700;
+        }
+        
+    </style>
+    
+    
+
+    <div class="authordiv">
+        <div>
+            <div class="authorheader">
+                <h1>All Authors</h1>
+            </div>
+    
+            <div class="allauthornamefulldiv">
+                <div>
+                    <div class="allauthorname">
+                        <ul class="uldivallauthor">
+                            {% if author_page_obj %}
+                                {% for i in author_page_obj %}
+                                    <li>
+                                        <a href="{% url 'bookid' i.id %}" class="authoratage">
+                                            <h5>{{ i.first_name }} {{ i.last_name }}</h5>
+                                        </a>
+                                    </li>                          
+                                {% endfor %}
+                            {% else %}
+                                <h1>Author Not Found</h1>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="paginations"> 
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center pagination-lg">
+                {% if author_page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ author_page_obj.previous_page_number }}">Previous</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">Previous</a>
+                    </li>
+                {% endif %}
+                
+                {% for num in author_page_obj.paginator.page_range %}
+                    <li class="page-item {% if author_page_obj.number == num %}active{% endif %}">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endfor %}
+                
+                {% if author_page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ author_page_obj.next_page_number }}">Next</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+
+    
+    
+    
+
+    <style>
+    
+        .allprojectpagnitions nav{
+            margin: auto;
+        }
+        .allprojectpagnitions nav{
+            margin: auto;
+        }
+    
+        .pagination{
+            text-align: center;
+            margin-top: 10vh;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    
+    
+
+    <div class="booksection">
+        <div class="booksectiondivtwo">
+            {% if page_obj %}
+                {% for book in page_obj %}
+                    <div class="bookcard">
+                        <div class="imagedivbook">
+                            <img src="{{ book.BookImage.url }}" class="bookimages" alt="">
+                        </div>
+                        <div class="booktext">
+                            <h5 class="booktitle">{{ book.Book_Title }}</h5>
+                            <h6>Author: {{ book.user.first_name }} {{ book.user.last_name }}</h6>
+                        </div>
+                        <div class="imagebutton">
+                            <div>
+                                {% if user.is_authenticated %}
+                                    {% if book in user.favorite_books.all %}
+                                        <!-- Already in Favorites -->
+                                        <img src="{% static 'images/black_fab-filled.png' %}" class="blackfab" alt="">
+                                    {% else %}
+                                        <!-- Add to Favorites -->
+                                        <a href="{% url 'add_to_favorites' book.id %}">
+                                            <img src="{% static 'images/black_fab-removebg-preview.png' %}" class="blackfab" alt="">
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <!-- Redirect to Login Page -->
+                                    <a href="{% url 'simple_user_login' %}">
+                                        <img src="{% static 'images/black_fab-removebg-preview.png' %}" class="blackfab" alt="">
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h1 class="nobooksh1">No books found for this author.</h1>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Pagination -->
+    <div class="paginations"> 
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center pagination-lg">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">Previous</a>
+                    </li>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                    <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+{% endblock blockname %}

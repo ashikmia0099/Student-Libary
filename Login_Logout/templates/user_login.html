@@ -1,0 +1,943 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %} 
+{% block blockname %}
+ 
+
+{% if messages %} 
+{% for i in messages %}
+<h4>{{i}}</h4>
+{% endfor %} {% endif %}
+
+
+ 
+
+ <style>
+  .input-group-text{
+    float: right;
+    margin-right: 50px;
+    margin-top: -45px;
+    position: relative;
+    z-index: 2;
+    font-size: 30px; /* Adjust this value as needed */
+    width: 25px; /* Adjust this value as needed */
+    height: 25px; /* Adjust this value as needed */
+    
+
+  }
+
+  .registerfulldiv{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 70px;
+    
+   
+  }
+  
+  .registerdiv2{
+    background-color: rgb(39, 14, 63);
+    
+    border-radius: 20px;
+  }
+  
+  .registerimg{
+    height:90%;
+    width: 95%;
+  }
+  
+  .leftdiv{
+    padding-top: 150px;
+    padding-left: 60px;
+    padding-bottom: 100px;
+  }
+  .reightdiv2{
+    width: 95%;
+    padding-bottom: 100px;
+    margin: auto;
+    background-color: rgb(134, 190, 190);
+    padding-top: 100px;
+    border-radius: 20px;
+  
+  
+  }
+  .reightdiv{
+    
+    padding-top: 100px;
+    padding-bottom: 100px;
+  
+  }
+  .reightdiv2h1{
+    font-weight: 700;
+  }
+  .registerform{
+    width:90%;
+    padding-top: 20px;
+    padding-left: 20px;
+    margin: auto;
+  
+  }
+  
+  .textfl{
+    padding: 10px;
+  }
+  
+  .textname{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    background-color: rgb(4, 124, 133);
+    color: white;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .textname:hover{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    background-color: rgb(4, 124, 133);
+    color: white;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .textnamepass{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 50px;
+    background-color: rgb(4, 124, 133);
+    color: white;
+    border: none;
+    border-top-right-radius: 10px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .textnamepass:hover{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 50px;
+    background-color: rgb(4, 124, 133);
+    color: white;
+    border: none;
+    border-top-right-radius: 10px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .texth14{
+    padding-left: 70px;
+  }
+  
+  
+  
+  .input-group-text{
+    background-color: rgb(134, 190, 190);
+    border: none;
+  }
+  
+  .form-check{
+    padding-top: 15px;
+    padding-left: 40px;
+  }
+  
+  .form-check-label{
+    font-size: 23px;
+    padding-left: 15px;
+    font-weight: 600;
+  }
+  input[type=checkbox] {
+    margin: 4px 0 0;
+    line-height: normal;
+    width: 25px;
+    height: 25px;
+    border: none;
+  }
+  .loginbtn{
+    font-size: 30px;
+    text-align: center;
+    background-color: rgb(17, 105, 121);
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    border: none;
+  
+  }
+  
+  .registerbtndiv{
+    padding-top: 26px;
+    text-align: center;
+    
+  }
+  .registerbtndiv:hover{
+    padding-top: 26px;
+    text-align: center;
+    
+  }
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+   font-size: 20px;
+   font-weight: 500;
+  }
+  
+  .already{
+    padding-top: 30px;
+    text-align: center;
+  }
+
+
+  .textaligment{
+    text-align: right;
+    font-size: 22px;
+    font-weight: 500;
+    padding-top: 2px;
+    
+  }
+
+  .formcheck{
+    justify-content: space-between;
+  }
+
+
+  </style>
+
+  
+
+<!-- login media query css  -->
+
+
+<!-- small device -->
+
+<style>
+  @media (min-width: 10px) and (max-width: 576px){
+
+    .registerfulldiv{
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      
+     
+    }
+    
+    .registerdiv2{
+      background: transparent;
+      
+      border-radius: 15px;
+    }
+    
+    .registerimg{
+      height:90%;
+      width: 95%;
+    }
+    
+    .leftdiv{
+      padding-top: 150px;
+      padding-left: 60px;
+      padding-bottom: 50px;
+    }
+    .reightdiv2{
+      width: 100%;
+      padding-bottom: 50px;
+      margin: auto;
+      background-color: rgb(134, 190, 190);
+      padding-top: 30px;
+      border-radius: 15px;
+    
+    
+    }
+    .reightdiv{
+      
+      padding-top: 10px;
+      padding-bottom: 20px;
+    
+    }
+    .reightdiv2h1{
+      font-weight: 700;
+    }
+    .registerform{
+      width:100%;
+      padding-top: 20px;
+      padding-left: 0px;
+      margin: auto;
+    
+    }
+    
+    .textfl{
+      padding: 5px;
+    }
+    
+    .textname{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    
+    .textname:hover{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight:400;
+    }
+    
+    .textnamepass{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .textnamepass:hover{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .texth14{
+      padding-left: 0px;
+      text-align: center;
+    }
+    
+    
+    
+    .input-group-text{
+      background-color: rgb(134, 190, 190);
+      border: none;
+    }
+    
+    .form-check{
+      padding-top: 15px;
+      padding-left: 40px;
+    }
+    
+    .form-check-label{
+     
+      padding-left: 5px;
+      font-weight: 600;
+    }
+    input[type=checkbox] {
+      margin: 4px 0 0;
+      line-height: normal;
+      width: 16px;
+      height: 16px;
+      border: none;
+    }
+    .loginbtn{
+      font-size: 1em;
+      text-align: center;
+      background-color: rgb(17, 105, 121);
+      padding-left: 10vw;
+      padding-right: 10vw;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      border-radius: 40px;
+      border: none;
+    
+    }
+    
+    .registerbtndiv{
+      padding-top: 26px;
+      text-align: center;
+      
+    }
+    .registerbtndiv:hover{
+      padding-top: 26px;
+      text-align: center;
+      
+    }
+  
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+     font-size: 20px;
+     font-weight: 500;
+    }
+    
+    .already{
+      padding-top: 30px;
+      text-align: center;
+    }
+
+    .leftdiv{
+      flex: none;
+      width: 100%;
+      display: none;
+    }
+
+    .reightdiv{
+      flex: none;
+      width: 100%;
+    }
+
+   
+    .remambermetext{
+      font-size: 1em;
+    }
+
+    .textaligment{
+      text-align: left;
+      font-size: 14px;
+      font-weight: 500;
+      padding-top: 2px;
+      padding-left: 10px;
+    }
+
+    .dont{
+      font-size: 15px;
+    }
+
+    .input-group-text{
+      float: right;
+      margin-right: 30px;
+      margin-top: -35px;
+      position: relative;
+      z-index: 2;
+      font-size: 20px; 
+      width: 25px; 
+      height: 25px; 
+
+      
+
+    }
+
+    .formcheck{
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0% 3% 0% 0%;
+    }
+
+  }
+</style>
+
+
+
+
+<!-- medium device -->
+
+<style>
+  @media (min-width: 576px) and (max-width: 900px){
+
+    .registerfulldiv{
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      
+     
+    }
+    
+    .registerdiv2{
+      background: transparent;
+      
+      border-radius: 15px;
+    }
+    
+    .registerimg{
+      height:90%;
+      width: 95%;
+    }
+    
+    .leftdiv{
+      padding-top: 150px;
+      padding-left: 60px;
+      padding-bottom: 50px;
+    }
+    .reightdiv2{
+      width: 100%;
+      padding-bottom: 50px;
+      margin: auto;
+      background-color: rgb(134, 190, 190);
+      padding-top: 30px;
+      border-radius: 15px;
+    
+    
+    }
+    .reightdiv{
+      
+      padding-top: 10px;
+      padding-bottom: 20px;
+    
+    }
+    .reightdiv2h1{
+      font-weight: 700;
+    }
+    .registerform{
+      width:100%;
+      padding-top: 20px;
+      padding-left: 0px;
+      margin: auto;
+    
+    }
+    
+    .textfl{
+      padding: 5px;
+    }
+    
+    .textname{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    
+    .textname:hover{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight:400;
+    }
+    
+    .textnamepass{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .textnamepass:hover{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .texth14{
+      padding-left: 0px;
+      text-align: center;
+    }
+    
+    
+    
+    .input-group-text{
+      background-color: rgb(134, 190, 190);
+      border: none;
+    }
+    
+    .form-check{
+      padding-top: 15px;
+      padding-left: 40px;
+    }
+    
+    .form-check-label{
+     
+      padding-left: 5px;
+      font-weight: 600;
+    }
+    input[type=checkbox] {
+      margin: 4px 0 0;
+      line-height: normal;
+      width: 16px;
+      height: 16px;
+      border: none;
+    }
+    .loginbtn{
+      font-size: 20px;
+      text-align: center;
+      background-color: rgb(17, 105, 121);
+      padding-left: 70px;
+      padding-right: 70px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      border-radius: 40px;
+      border: none;
+    
+    }
+    
+    .registerbtndiv{
+      padding-top: 26px;
+      text-align: center;
+      
+    }
+    .registerbtndiv:hover{
+      padding-top: 26px;
+      text-align: center;
+      
+    }
+  
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+     font-size: 20px;
+     font-weight: 500;
+    }
+    
+    .already{
+      padding-top: 30px;
+      text-align: center;
+    }
+
+    .leftdiv{
+      flex: none;
+      width: 100%;
+      display: none;
+    }
+
+    .reightdiv{
+      flex: none;
+      width: 100%;
+    }
+
+   
+    .remambermetext{
+      font-size: 14px;
+    }
+
+    .textaligment{
+      text-align: left;
+      font-size: 14px;
+      font-weight: 500;
+      padding-top: 2px;
+      padding-left: 10px;
+    }
+
+    .dont{
+      font-size: 15px;
+    }
+
+    .input-group-text{
+      float: right;
+      margin-right: 30px;
+      margin-top: -35px;
+      position: relative;
+      z-index: 2;
+      font-size: 20px; /* Adjust this value as needed */
+      width: 25px; /* Adjust this value as needed */
+      height: 25px; /* Adjust this value as needed */
+      
+
+    }
+
+    .formcheck{
+      justify-content: space-between;
+      margin-right: 3vw;
+    }
+
+
+  }
+</style>
+
+
+
+
+<!--  Large  device -->
+
+<style>
+  @media (min-width: 900px) and (max-width: 1200px){
+
+    .registerfulldiv{
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      
+     
+    }
+    
+    .registerdiv2{
+      background-color: rgb(39, 14, 63);
+      
+      border-radius: 15px;
+    }
+    
+    .registerimg{
+      height:90%;
+      width: 95%;
+    }
+    
+    .leftdiv{
+     
+      padding: 5vh 1vw 0vh 1vw;
+    }
+    .reightdiv2{
+      width: 100%;
+      padding-bottom: 50px;
+      margin: auto;
+      background-color: rgb(134, 190, 190);
+      padding-top: 30px;
+      border-radius: 15px;
+    
+    
+    }
+    .reightdiv{
+      
+      padding-top: 10px;
+      padding-bottom: 20px;
+    
+    }
+    .reightdiv2h1{
+      font-weight: 700;
+    }
+    .registerform{
+      width:100%;
+      padding-top: 20px;
+      padding-left: 0px;
+      margin: auto;
+    
+    }
+    
+    .textfl{
+      padding: 5px;
+    }
+    
+    .textname{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    
+    .textname:hover{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight:400;
+    }
+    
+    .textnamepass{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .textnamepass:hover{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background-color: rgb(4, 124, 133);
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .texth14{
+      padding-left: 0px;
+      text-align: center;
+    }
+    
+    
+    
+    .input-group-text{
+      background-color: rgb(134, 190, 190);
+      border: none;
+    }
+    
+    .form-check{
+      padding-top: 15px;
+      padding-left: 40px;
+    }
+    
+    .form-check-label{
+     
+      padding-left: 5px;
+      font-weight: 600;
+    }
+    input[type=checkbox] {
+      margin: 4px 0 0;
+      line-height: normal;
+      width: 16px;
+      height: 16px;
+      border: none;
+    }
+    .loginbtn{
+      font-size: 20px;
+      text-align: center;
+      background-color: rgb(17, 105, 121);
+      padding-left: 70px;
+      padding-right: 70px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      border-radius: 40px;
+      border: none;
+    
+    }
+    
+    .registerbtndiv{
+      padding-top: 26px;
+      text-align: center;
+      
+    }
+    .registerbtndiv:hover{
+      padding-top: 26px;
+      text-align: center;
+      
+    }
+  
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+     font-size: 20px;
+     font-weight: 500;
+    }
+    
+    .already{
+      padding-top: 30px;
+      text-align: center;
+    }
+
+    .leftdiv{
+      flex: none;
+      display: block;
+    }
+
+    .reightdiv{
+      flex: none;
+      padding-right:1vw ;
+      
+    }
+
+   
+    .remambermetext{
+      font-size: 14px;
+    }
+
+    .textaligment{
+      text-align: left;
+      font-size: 14px;
+      font-weight: 500;
+      padding-top: 2px;
+      padding-left: 10px;
+    }
+
+    .dont{
+      font-size: 15px;
+    }
+
+    .input-group-text{
+      float: right;
+      margin-right: 30px;
+      margin-top: -35px;
+      position: relative;
+      z-index: 2;
+      font-size: 20px; /* Adjust this value as needed */
+      width: 25px; /* Adjust this value as needed */
+      height: 25px; /* Adjust this value as needed */
+      
+
+    }
+
+    .formcheck{
+      justify-content: space-between;
+      margin-right: 3vw;
+    }
+
+
+  }
+</style>
+
+
+
+  <div class="registerfulldiv">
+    <div class="registerdiv2 d-flex">
+      <!-- left div -->
+      <div class=" col-6 leftdiv">
+        <img src="{% static 'socialmedia/logi.png' %}" alt="" class="registerimg">
+      </div>
+      <!-- right div -->
+      <div class=" col-6 reightdiv">
+        <div class="reightdiv2">
+          <div class="texth14">
+            <h1 class="reightdiv2h1">User Login</h1>
+          </div>
+          <div class="registerform">
+            <form method="post" >
+              {% csrf_token %}
+              <div class="form-group textfl">
+                  <input type="email" class="form-control textname" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="username">
+                  <!-- Display form errors if any -->
+                  {% if form.username.errors %}
+                      <div class="alert alert-danger">
+                          {{ form.username.errors|join:", " }}
+                      </div>
+                  {% endif %}
+              </div>
+
+              <div class="form-group textfl">
+                  <input name="password" type="password" class="form-control textnamepass" id="password" placeholder="Password" required="true" aria-label="Password" aria-describedby="basic-addon1">
+                  <div class="input-group-append">
+                    <span class="input-group-text" onclick="password_show_hide();" style="background-color: transparent; border: none;">
+                      <i class="fas fa-eye showeyes" id="show_eye"></i>
+                      <i class="fas fa-eye-slash d-none showeyes" id="hide_eye"></i>
+                    </span>
+                  </div>
+                  
+                  
+                  <!-- Display password errors if any -->
+                  {% if form.password.errors %}
+                      <div class="alert alert-danger">
+                          {{ form.password.errors|join:", " }}
+                      </div>
+                  {% endif %} 
+              </div>
+              <div class="form-check formcheck d-flex">
+                <div>
+                  <input type="checkbox" class="form-check-input checkboxsize" id="exampleCheck1">
+                <label class="form-check-label remambermetext" for="exampleCheck1">Remember Me</label>
+                </div>
+                <div class="textaligment">
+                  <a href="">Forgot Password</a>
+                </div>
+              </div>
+              <div class="registerbtndiv">
+                  <button type="submit" class=" loginbtn registerbtn">Login</button>
+              </div>
+              <div class=" already">
+                <h4 class="dont">Don’t have a account? <a href="{% url 'Registerpage' %}">Register now</a></h4>
+              </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+{% endblock blockname %}

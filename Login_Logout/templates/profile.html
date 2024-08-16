@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block blockname %}
+
+
+<style>
+    .editinfo{
+
+        text-decoration: none;
+
+    }
+    .textwhitefive i{
+        margin-left: 120px; 
+        font-size:24px;
+    }
+    .textwhitefive h4 {
+        color: white;
+        
+    }
+    #submenu1{
+        padding-bottom: 30px;
+    }
+</style>
+
+
+
+<!-- mobile device -->
+
+
+<style>
+    @media (min-width: 10px) and (max-width: 576px){
+
+        .profilenowrap{
+            flex-direction: column;
+        }
+
+        .nav-pills{
+            align-items: start;
+            justify-self: start;
+            margin: 0px;
+        }
+       
+    }
+</style>
+
+
+<!-- medium device -->
+
+<style>
+    @media (min-width: 576px) and (max-width: 900px){
+
+        .profilenowrap{
+            flex-direction: column;
+            
+        }
+
+        .bg-dark{
+            width: 100%;
+        }
+       
+    }
+</style>
+
+
+
+
+<!-- medium large device -->
+
+<style>
+    @media (min-width: 900px) and (max-width: 1200px){
+
+        .textwhitefive i{
+            margin-left: 3vw; 
+            
+        }
+       
+    }
+</style>
+  
+
+
+<div class="container-fluid"> 
+  <div class="row flex-nowrap profilenowrap">
+      <div class="col-auto col-md-3  px-sm-2 px-0 bg-dark">
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+              <a href="{% url 'student_info' %}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                  <h1 class=" d-none d-sm-inline mt-5 deshboard_id border-bottom pb-5">My Profile</h1>
+              </a>
+              <ul class="nav nav-pills text-white flex-column mb-sm-auto mb-0  " id="menu">
+                
+                <li>
+                    <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                        <i class="fs-4 bi-bootstrap"></i> 
+                        <span class="ms-0 d-none d-sm-inline text-white">
+                            
+                        <div class="  textwhitefive">
+                            <h4>My Class<i class='fas fa-chevron-circle-down'> </i></h4>
+                           </span> </a>
+                        </div>
+                    <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                        <li class="">
+                            <a href="{% url 'myclass' %}" class="nav-link px-0"> <span class=" d-sm-inline text-white"><h5>1. Every Day Class  </h5></span> </a>
+                        </li> 
+                        <li class="">
+                            <a href="{% url 'Exam_andAssingment' %}" class="nav-link px-0"> <span class=" d-sm-inline text-white"><h5>2. Exam And Assingment </h5></span> </a>
+                        </li>
+                        
+                        
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="#submenu2" data-bs-toggle="collapse"  class="nav-link px-0 align-middle">
+                        <a href="{% url 'student_dataUpdate' %}" class="editinfo"> <span class="ms- d-sm-inline text-white">
+                        <h4 class=" d-sm-inline deshboard_id">Edit Information</h4></span></a>
+                    </a>
+                </li>
+                  
+                <li>
+                    <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                    <a href="{% url 'refferal_link' %}" class="editinfo"> <span class="ms-1  d-sm-inline text-white">
+                    <h4 class="  d-sm-inline deshboard_id">Refferal Link</h4></a></a>
+                </li>
+                <li>
+                    <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                    <a href="{% url 'certificate' %}" class="editinfo"> <span class="ms-1  d-sm-inline text-white">
+                    <h4 class=" d-sm-inline deshboard_id">Certification</h4></a></a>
+                </li>
+                <li>
+                    <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                    <a href="{% url 'announcementpath' %}" class="editinfo"> <span class="ms-1  d-sm-inline text-white">
+                    <h4 class="  d-sm-inline deshboard_id">Announcement</h4></a></a>
+                </li>
+              </ul> 
+              <hr> 
+              
+          </div>
+      </div>
+      <div class="col py-3">
+          {% block Deshboard %}
+ 
+          {% endblock Deshboard %}
+      </div>
+  </div>
+</div>
+
+      
+{% endblock blockname %}
+
+ 
+
+
+
+

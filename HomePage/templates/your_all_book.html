@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+{% block blockname %}
+
+
+
+
+<style>
+    .content-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        min-width: 400px;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+       
+    }
+    
+    .content-table thead tr {
+        background-color: #0a1110;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+        font-size: 25px;
+        padding-top: 15px;
+       
+    }
+    
+    .content-table th,
+    .content-table td {
+        padding: 12px 15px;
+        font-size: 17px;
+        font-weight: 600;
+        color: white;
+    }
+    
+    .content-table tbody tr {
+        border-bottom: 2px solid #ffffff;
+        background-color: #011f4b;
+    }
+        
+    .contractform h1{
+        font-size: 55px;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+
+    .paginations{
+        padding-bottom: 5%;
+    }
+        
+    .page-link{
+        font-size: 25px;
+        color: #000000;
+        font-weight: 500;
+    }
+    .read-more{
+        font-size: 20px;
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .contractformfulldiv{
+        margin: 5vh 5%;
+
+    }
+
+
+
+</style>
+
+
+
+
+<div class="contractformfulldiv">
+    <div>
+        <table class="content-table w-100">
+            <thead>
+                <tr class="trclass">
+                    <th><h4 >Book Name</h4></th>
+                    <th><h4 >Book Price</h4></th>
+                    <th class="time"><h4 >Created At</h4></th>
+                    <th><h4 >Edit </h4></th>
+                    <th><h4 >Delete</h4></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% if books %}
+
+                {% for i in books %}
+
+                <tr>
+                    <td> {{i.Book_Title}} </td>
+                    <td>{{i.BookPrice}} $</td>
+                    <td> {{i.created_on}}</td>
+                    <td><a href="{% url 'Edit_book' i.id %}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+                    <td><a href="{% url 'Delete_book' i.id %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                    
+                    
+                </tr>
+                  
+                {% endfor %}
+
+                {% else %}
+
+                <h1>Data Not Found</h1>
+                  
+                {% endif %}
+                
+                
+            </tbody>
+            
+        </table>
+    </div>
+</div>
+
+
+
+
+  
+{% endblock blockname %}
